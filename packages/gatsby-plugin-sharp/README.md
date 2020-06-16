@@ -1,4 +1,4 @@
-# gatsby-plugin-sharp
+# gatsby-plugin-sharp fork with removed node-potrace
 
 Exposes several image processing functions built on the
 [Sharp image processing library](https://github.com/lovell/sharp). This is a

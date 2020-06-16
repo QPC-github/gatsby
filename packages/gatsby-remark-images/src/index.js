@@ -11,7 +11,7 @@ const path = require(`path`)
 const queryString = require(`query-string`)
 const isRelativeUrl = require(`is-relative-url`)
 const _ = require(`lodash`)
-const { fluid, stats, traceSVG } = require(`gatsby-plugin-sharp`)
+const { fluid, stats } = require(`@redocly/gatsby-plugin-sharp`)
 const Promise = require(`bluebird`)
 const cheerio = require(`cheerio`)
 const { slash } = require(`gatsby-core-utils`)
@@ -289,27 +289,27 @@ module.exports = (
 
     // if options.tracedSVG is enabled generate the traced SVG and use that as the placeholder image
     if (options.tracedSVG) {
-      let args = typeof options.tracedSVG === `object` ? options.tracedSVG : {}
+      // let args = typeof options.tracedSVG === `object` ? options.tracedSVG : {}
 
-      // Translate Potrace constants (e.g. TURNPOLICY_LEFT, COLOR_AUTO) to the values Potrace expects
-      const { Potrace } = require(`potrace`)
-      const argsKeys = Object.keys(args)
-      args = argsKeys.reduce((result, key) => {
-        const value = args[key]
-        result[key] = Potrace.hasOwnProperty(value) ? Potrace[value] : value
-        return result
-      }, {})
+      // // Translate Potrace constants (e.g. TURNPOLICY_LEFT, COLOR_AUTO) to the values Potrace expects
+      // const { Potrace } = require(`potrace`)
+      // const argsKeys = Object.keys(args)
+      // args = argsKeys.reduce((result, key) => {
+      //   const value = args[key]
+      //   result[key] = Potrace.hasOwnProperty(value) ? Potrace[value] : value
+      //   return result
+      // }, {})
 
-      const tracedSVG = await traceSVG({
-        file: imageNode,
-        args,
-        fileArgs: args,
-        cache,
-        reporter,
-      })
+      // const tracedSVG = await traceSVG({
+      //   file: imageNode,
+      //   args,
+      //   fileArgs: args,
+      //   cache,
+      //   reporter,
+      // })
 
-      // Escape single quotes so the SVG data can be used in inline style attribute with single quotes
-      placeholderImageData = tracedSVG.replace(/'/g, `\\'`)
+      // // Escape single quotes so the SVG data can be used in inline style attribute with single quotes
+      // placeholderImageData = tracedSVG.replace(/'/g, `\\'`)
     }
 
     const ratio = `${(1 / fluidResult.aspectRatio) * 100}%`

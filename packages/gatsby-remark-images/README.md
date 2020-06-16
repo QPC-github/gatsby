@@ -1,5 +1,4 @@
-# gatsby-remark-images
-
+# gatsby-remark-images fork with removed node-potrace
 Processes images in markdown so they can be used in the production build.
 
 In the processing, it makes images responsive by:

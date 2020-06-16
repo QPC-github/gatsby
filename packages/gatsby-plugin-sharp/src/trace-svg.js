@@ -91,59 +91,7 @@ const optimize = svg => {
 }
 
 exports.notMemoizedtraceSVG = async ({ file, args, fileArgs, reporter }) => {
-  const options = healOptions(
-    getPluginOptions(),
-    {
-      // use maxWidth/maxHeight as width/height if available
-      // if width/height is used in fileArgs, the maxWidth/maxHeight
-      // values will be overritten
-      ...(fileArgs && fileArgs.maxWidth && fileArgs.maxHeight
-        ? {
-            height: fileArgs.maxHeight,
-            width: fileArgs.maxWidth,
-          }
-        : {}),
-      ...fileArgs,
-    },
-    file.extension
-  )
-
-  const optionsHash = createContentDigest(options)
-
-  const tmpFilePath = path.join(
-    tmpDir,
-    filenamify(
-      `${file.internal.contentDigest}-${file.name}-${optionsHash}.${file.extension}`
-    )
-  )
-
-  await exports.memoizedPrepareTraceSVGInputFile({
-    tmpFilePath,
-    file,
-    options,
-    reporter,
-  })
-
-  const svgToMiniDataURI = require(`mini-svg-data-uri`)
-  const potrace = require(`potrace`)
-  const trace = promisify(potrace.trace)
-
-  const defaultArgs = {
-    color: `lightgray`,
-    optTolerance: 0.4,
-    turdSize: 100,
-    turnPolicy: potrace.Potrace.TURNPOLICY_MAJORITY,
-  }
-
-  const optionsSVG = _.defaults({}, args, defaultArgs)
-
-  // `srcset` attribute rejects URIs with literal spaces
-  const encodeSpaces = str => str.replace(/ /gi, `%20`)
-
-  return trace(tmpFilePath, optionsSVG)
-    .then(optimize)
-    .then(svgToMiniDataURI)
-    .then(encodeSpaces)
+  throw new Error('Potrace is not supported')
 }
 
 let memoizedPrepareTraceSVGInputFile
