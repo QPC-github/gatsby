@@ -290,7 +290,6 @@ module.exports = (
     // if options.tracedSVG is enabled generate the traced SVG and use that as the placeholder image
     if (options.tracedSVG) {
       // let args = typeof options.tracedSVG === `object` ? options.tracedSVG : {}
-
       // // Translate Potrace constants (e.g. TURNPOLICY_LEFT, COLOR_AUTO) to the values Potrace expects
       // const { Potrace } = require(`potrace`)
       // const argsKeys = Object.keys(args)
@@ -299,7 +298,6 @@ module.exports = (
       //   result[key] = Potrace.hasOwnProperty(value) ? Potrace[value] : value
       //   return result
       // }, {})
-
       // const tracedSVG = await traceSVG({
       //   file: imageNode,
       //   args,
@@ -307,7 +305,6 @@ module.exports = (
       //   cache,
       //   reporter,
       // })
-
       // // Escape single quotes so the SVG data can be used in inline style attribute with single quotes
       // placeholderImageData = tracedSVG.replace(/'/g, `\\'`)
     }
