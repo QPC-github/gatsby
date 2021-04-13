@@ -4,7 +4,6 @@ const path = require(`path`)
 const debug = require(`debug`)(`gatsby:gatsby-plugin-sharp`)
 const duotone = require(`./duotone`)
 const imagemin = require(`imagemin`)
-const imageminMozjpeg = require(`imagemin-mozjpeg`)
 const imageminPngquant = require(`imagemin-pngquant`)
 const { healOptions } = require(`./plugin-options`)
 const { SharpError } = require(`./sharp-error`)
@@ -168,8 +167,9 @@ exports.processFile = (file, transforms, options = {}) => {
       }
 
       if (options.useMozJpeg && transformArgs.toFormat === `jpg`) {
-        await compressJpg(clonedPipeline, outputPath, transformArgs)
-        return transform
+        throw new Error(
+          `"useMozJpeg" is not supported`
+        )
       }
 
       try {

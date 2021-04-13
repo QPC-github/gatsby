@@ -1,7 +1,7 @@
 {
   "name": "@redocly/gatsby-plugin-sharp",
   "description": "Wrapper of the Sharp image manipulation library for Gatsby plugins",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
@@ -16,7 +16,6 @@
     "gatsby-telemetry": "^2.3.0-next.1",
     "got": "^10.7.0",
     "imagemin": "^7.0.1",
-    "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.1",
     "lodash": "^4.17.21",
     "mini-svg-data-uri": "^1.2.3",
