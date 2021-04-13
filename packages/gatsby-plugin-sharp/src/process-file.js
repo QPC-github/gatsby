@@ -167,9 +167,7 @@ exports.processFile = (file, transforms, options = {}) => {
       }
 
       if (options.useMozJpeg && transformArgs.toFormat === `jpg`) {
-        throw new Error(
-          `"useMozJpeg" is not supported`
-        )
+        throw new Error(`"useMozJpeg" is not supported`)
       }
 
       try {
@@ -212,19 +210,19 @@ const compressPng = (pipeline, outputPath, options) =>
       .then(imageminBuffer => fs.writeFile(outputPath, imageminBuffer))
   )
 
-const compressJpg = (pipeline, outputPath, options) =>
-  pipeline.toBuffer().then(sharpBuffer =>
-    imagemin
-      .buffer(sharpBuffer, {
-        plugins: [
-          imageminMozjpeg({
-            quality: options.jpegQuality || options.quality,
-            progressive: options.jpegProgressive,
-          }),
-        ],
-      })
-      .then(imageminBuffer => fs.writeFile(outputPath, imageminBuffer))
-  )
+// const compressJpg = (pipeline, outputPath, options) =>
+//   pipeline.toBuffer().then(sharpBuffer =>
+//     imagemin
+//       .buffer(sharpBuffer, {
+//         plugins: [
+//           imageminMozjpeg({
+//             quality: options.jpegQuality || options.quality,
+//             progressive: options.jpegProgressive,
+//           }),
+//         ],
+//       })
+//       .then(imageminBuffer => fs.writeFile(outputPath, imageminBuffer))
+//   )
 
 exports.createArgsDigest = args => {
   const argsDigest = createContentDigest(args)
